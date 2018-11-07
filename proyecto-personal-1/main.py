@@ -1,4 +1,3 @@
-
 paradas=[[0,"La Magdanlena","Mariscal Sucre","Huaynapalcon",1,3,4,5,6],
          [1,"La Mascota","Mariscal Sucre","Rodrigo de Chavez",1,2,3,4,5,6],
          [2,"Los Dos Puentes S/N","Necochea","Francisco Barba",1,2,3,4,5,6],
@@ -30,7 +29,7 @@ def main():
     while(opc1!=0):
         opc1 = "99"
         opc2 = "99"
-        print("\n"*2)
+        print("--" * 5, " Menu principal", "--" * 5)
         for llave, valor in menu_principal.items():
             print(f"{llave}.- {valor}")
         opc1 = int(input("Escoja la opcion deseada"))
@@ -44,6 +43,7 @@ def main():
         elif (opc1 == 2):
             print(f"opcion escogida {opc1}")
             while (opc2 != 0):
+                print("--" * 5," Menu consulta ","--"*5)
                 for llave, valor in menu_consultar.items():
                     print(f"{llave}.- {valor}")
                 opc2 = int(input("Escoja la opcion deseada"))
@@ -87,13 +87,13 @@ def ingresar_parada(numero,nombre,callep,calles ,lineas):
     #print(paradas)
 
 def consultar_parada():
-    print("\n Paradas:")
+    print("--" * 5, " PARADAS", "--" * 5)
     for parada in paradas:
         print("#",parada[0],"| \tNombre: ",parada[1],"| \tCalle Principal: ",parada[2],"| \tCalle secundaria: ",parada[3])
     print("\n")
 
 def consultar_linea_de_bus():
-    print("\n")
+    print("--" * 5, " LINEAS DE BUS ", "--" * 5)
     for linea in lineas_de_bus_dic.items():
         print(f"Ruta: {linea}")
     print("\n")
