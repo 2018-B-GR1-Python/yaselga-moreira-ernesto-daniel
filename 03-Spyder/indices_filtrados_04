@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 21 08:47:14 2018
+
+@author: ernesteins
+"""
+import pandas as pd
+import os
+
+directorio_archivo= "/home/ernesteins/Documents/Introduccion-al-desarrollo-web/yaselga-moreira-ernesto-daniel/03-Spyder/artwork_data_fame.pickle"
+
+df_guardado = pd.read_pickle(directorio_archivo)
+
+artistas_df_con_duplicados = df_guardado["artist"]
+
+artistas_df_sin_duplicados = pd.unique(artistas_df_con_duplicados)
+
+# Cuántos artistas hay?
+len(artistas_df_sin_duplicados) #3336
+
+# Cuantos trabajos tienen de artista Bacon Francis
+artista_bacon_francis = df_guardado["artist"]== 'Bacon, Francis'
+
+# Valores y cuantos tenemos de ese tipo de valor
+artista_bacon_francis.value_counts()
+
+# otra forma
+serie_artistas = df_guardado['artist'].value_counts()
+
+serie_artistas['Bacon, Francis']
+
+# otra más
+df_bacon_francis_2 = df_guardado[artista_bacon_francis]
+
+len(df_bacon_francis_2)
