@@ -34,3 +34,4 @@ serie_artistas['Bacon, Francis']
 df_bacon_francis_2 = df_guardado[artista_bacon_francis]
 
 len(df_bacon_francis_2)
+
