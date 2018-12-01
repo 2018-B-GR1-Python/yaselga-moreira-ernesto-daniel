@@ -82,3 +82,10 @@ laps_drivers[["minutos","driverRef"]].sort_values(by = 'minutos').head(20)
 ## SIEMPRE ES AL FINAL DE LA CARRERA
 
 laps_drivers[["minutos","lap"]].sort_values(by = 'minutos').head(20)
+
+## FERRARI ES LA ESCUDERÍA CON MÁS VICTORIAS
+constructor_standing_completo = constructorStandings.join(constructors,"constructorId")
+constructores_P1_bool = constructor_standing_completo["position"]==1
+constructores_P1 =  constructor_standing_completo[constructores_P1_bool]
+constructores_P1["name"].value_counts()
+
