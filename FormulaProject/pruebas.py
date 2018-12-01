@@ -78,14 +78,33 @@ laps_drivers.rename(columns={"milliseconds":"minutos"},inplace = True)
 
 laps_drivers[["minutos","driverRef"]].sort_values(by = 'minutos').head(20)
 
-## LA VUELTA MÁS RAPIDA (EN CARRERA) 
-## SIEMPRE ES AL FINAL DE LA CARRERA
+### LA VUELTA MÁS RAPIDA (EN CARRERA) 
+### SIEMPRE ES AL FINAL DE LA CARRERA
 
 laps_drivers[["minutos","lap"]].sort_values(by = 'minutos').head(20)
 
-## FERRARI ES LA ESCUDERÍA CON MÁS VICTORIAS
+### FERRARI ES LA ESCUDERÍA CON MÁS VICTORIAS
 constructor_standing_completo = constructorStandings.join(constructors,"constructorId")
 constructores_P1_bool = constructor_standing_completo["position"]==1
 constructores_P1 =  constructor_standing_completo[constructores_P1_bool]
 constructores_P1["name"].value_counts()
 
+### EL CORREDOR MÁS JOVEN EN PISTA ES MAX VERSTAPPEN
+
+drivers_dob = drivers["dob"]
+drivers_dob = drivers_dob.str.split("/",expand = True)
+drivers_dob.rename(columns={0:"dayob",1:"monthob",2:"yearob"},inplace = True)
+drivers_dob = drivers.join(drivers_dob,"driverId")
+
+drivers_dob["yearob"] = drivers_dob["yearob"].fillna(0).astype(object).astype(int)
+2018 - drivers_dob["yearob"].max()
+
+drivers_dob[].loc[drivers_dob["yearob"]==drivers_dob["yearob"].max()]
+
+drivers_dob[["driverRef",
+                  "number",
+                  "code",
+                  "forename",
+                  "surname",
+                  "dob",
+                  "nationality"]].loc[drivers_dob["yearob"]==drivers_dob["yearob"].max()]
