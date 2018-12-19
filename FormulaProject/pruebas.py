@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 # extracción de datos
 
-path = "/home/ernesteins/Documents/Introduccion-al-desarrollo-web/yaselga-moreira-ernesto-daniel/FormulaProject/F1"
+path = "/home/ernesteins/Documents/Python/yaselga-moreira-ernesto-daniel/FormulaProject/F1"
 
 circuits =  pd.read_csv(path+'/circuits.csv',index_col="circuitId")
 constructorResults =  pd.read_csv(path+'/constructorResults.csv',index_col="constructorResultsId")
@@ -99,8 +99,6 @@ drivers_dob = drivers.join(drivers_dob,"driverId")
 drivers_dob["yearob"] = drivers_dob["yearob"].fillna(0).astype(object).astype(int)
 2018 - drivers_dob["yearob"].max()
 
-drivers_dob[].loc[drivers_dob["yearob"]==drivers_dob["yearob"].max()]
-
 drivers_dob[["driverRef",
                   "number",
                   "code",
@@ -108,3 +106,5 @@ drivers_dob[["driverRef",
                   "surname",
                   "dob",
                   "nationality"]].loc[drivers_dob["yearob"]==drivers_dob["yearob"].max()]
+
+

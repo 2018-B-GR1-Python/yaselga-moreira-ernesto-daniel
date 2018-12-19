@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 19 07:46:03 2018
+
+@author: ernesteins
+"""
+
+
+import json
+import pandas as pd
+
+# extracción de datos
+
+path = "/home/ernesteins/Documents/Python/yaselga-moreira-ernesto-daniel/FormulaProject/F1"
+
+
+constructors =  pd.read_csv(path+'/constructors.csv',index_col="constructorId")
+constructorStandings =  pd.read_csv(path+'/constructorStandings.csv',index_col="constructorStandingsId")
+drivers =  pd.read_csv(path+'/drivers.csv',index_col="driverId")
+races =  pd.read_csv(path+'/races.csv',index_col="raceId")
+
+constructor_standing_completo = constructorStandings.join(constructors,"constructorId")
+races.rename(columns={"name":"circuito"},inplace = True)
+races.drop('url', axis=1, inplace=True)
+constructor_standing_completo = constructor_standing_completo.join(races,'raceId')
+
+
+
+# Agrupar a los corredores por nacionalidad
+agrupado_por_corredor = drivers.groupby('nationality')
+print (agrupado_por_corredor)
+for driverRef,grupo in agrupado_por_corredor:
+    print(driverRef,len(grupo))
+
+# Agrupar por constructores del dataframe de victorias
+agrupado_por_constructor = constructor_standing_completo.groupby('constructorRef')
+print (agrupado_por_constructor)
+for constructorRef,grupo in agrupado_por_constructor:
+    print(constructorRef,len(grupo))
+
+# Filtrar constructores que han ganado almenos una vez en un 'Grand Prix'
+condicion = lambda x: x['wins'] > 1
+arreglo = []
+for constructorRef,grupo in agrupado_por_constructor:
+    nueva_serie = grupo[condicion]
+    arreglo.append(nueva_serie)
+    print("{}:{}".format(constructorRef,len(nueva_serie)))
+constructores_df=pd.concat(arreglo)
+
+# Guardar en un json los constructores y todos los circuitos en los que han ganado
+
+arreglo = []
+constructores=[]
+for constructorRef,grupo in agrupado_por_constructor:
+    nueva_serie = grupo['circuito'].unique()
+    constructor = {'Escuderia':constructorRef,'circuitos':nueva_serie}
+    constructores.append(constructor)
+constructores
+
+
+with open('constructores.json', 'w') as outfile:
+    json.dump(df_c, outfile)
