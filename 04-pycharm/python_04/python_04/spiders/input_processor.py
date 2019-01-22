@@ -2,7 +2,7 @@ import scrapy
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose
 from scrapy.loader.processors import TakeFirst
-from python_04.items import  ItemProducto
+from python_04.python_04.items import  ItemProductob
 
 def truncar_texto(texto):
         return texto[:50]

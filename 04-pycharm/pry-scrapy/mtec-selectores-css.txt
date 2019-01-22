@@ -1,0 +1,25 @@
+MTEC
+
+---------------------------------------------
+
+FACEBOOK: 
+https://www.facebook.com/pg/MTEC-172463372806603/shop/?ref=page_internal
+
+NOMBRES:
+
+response.css('tr > td > div > div > div > a > strong:nth-child(1)::text').extract()
+
+PRECIOS:
+
+response.css('tr > td > div > div > div > div:nth-child(2)::text').extract()
+
+----------------------------------------------
+
+PAGINA-OFICIAL: 
+https://www.mtec-ec.com/shop/
+
+Nombres:
+response.css('.details_product_item > div > a > h5::text').extract()
+
+PRECIOS:
+response.css('.details_product_item > span > span::text').extract()
