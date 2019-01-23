@@ -64,9 +64,12 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'prymtec.pipelines.PrymtecPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'prymtec.pipelines.ValidarProcesador': 100
+}
+
+FEED_FORMAT = 'json'
+FEED_URI = 'recolectado/procesadores.json'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

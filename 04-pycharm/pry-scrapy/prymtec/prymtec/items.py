@@ -8,7 +8,8 @@
 import scrapy
 
 
-class PrymtecItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+class Producto(scrapy.Item):
+    titulo = scrapy.Field()
+    precio = scrapy.Field()
+    link = scrapy.Field()
     pass
