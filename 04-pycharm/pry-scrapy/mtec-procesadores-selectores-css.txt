@@ -11,19 +11,40 @@ response.css('tr > td > div > div > div > a > strong:nth-child(1)::text').extrac
 
 response.css('a > strong:nth-child(1)::text').extract()
 
+lista.css('a > strong:nth-child(1)::text').extract_first()
+
 PRECIOS:
 
 response.css('tr > td > div > div > div > div:nth-child(2)::text').extract()
 
-response.css(".ellipsis::text").extract()
+response.css('.ellipsis::text').extract()
+
+lista.css('div:nth-child(2)::text').extract_first()
+
+
+LINK:
+
+tr > td > div > div > div > a::attr(href)
 
 ----------------------------------------------
 
 PAGINA-OFICIAL: 
 https://www.mtec-ec.com/categoria-producto/procesadores/
 
+Lista:
+lista_productos = response.css('.details_product_item')
+
+
 Nombres:
 response.css('.details_product_item > div > a > h5::text').extract()
 
+lista_productos.css('div > a > h5::text').extract_first()
+
+
 PRECIOS:
 response.css('.details_product_item > span > span::text').extract()
+
+lista_productos.css('span:nth-child(3) > span:nth-child(1)::text').extract_first()
+
+ENLACE:
+lista_productos.css('div > a::attr(href)').extract_first()
